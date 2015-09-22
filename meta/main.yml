@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  author: Felix Archambault
+  description: Ansible role to install common base packages on a host
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+    - name: EL
+      versions:
+      - 7
+    - name: Fedora
+      versions:
+      - 21
+      - 22
+    - name: Ubuntu
+      versions:
+      - trusty
+    - name: Debian
+      versions:
+      - wheezy
+  categories:
+  - development
+dependencies: []

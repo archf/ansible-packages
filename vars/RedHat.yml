@@ -1,0 +1,28 @@
+---
+# list of packages to install by default on any rhel family system
+
+packages:
+  - tmux
+  - mosh
+  - sudo
+  - git
+  - python3
+  - htop
+  - git
+  - tree
+  - openssh-server
+  - gdisk
+  - rsync
+  - lvm2
+  - ncurses-devel
+  - ncurses
+  - nmap
+  - fail2ban
+  - gcc
+  - kernel-devel
+  - vim-common
+  - vim-X11
+  - zsh
+  - sshpass
+  - urlview
+  - rxvt-unicode-256color
