@@ -2,13 +2,13 @@
 # list of packages to install by default on any debian family system
 packages:
   - tmux
+  - urlview
   - mosh
   - git
   - vim-gtk
   - vim
   - python3
   - htop
-  - git
   - fakeroot
   - tree
   - openssh-server
@@ -18,9 +18,9 @@ packages:
   - libncurses5-dev
   - libncurses5
   - nmap
-  - fail2ban
   - gcc
   - linux-kernel-headers
   - zsh
   - sshpash
-  - urlview
+  - curl
+  - wget

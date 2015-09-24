@@ -1,0 +1,8 @@
+---
+
+RedHat_repodest: "/etc/yum.repos.d"
+RedHat_repolist:
+  - virtualbox.repo
+
+Debian_repodest: ''
+Debian_repolist: []

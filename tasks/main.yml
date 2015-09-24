@@ -6,6 +6,11 @@
 - name: load OS specific variables (see ../vars/*)
   include_vars: "{{ ansible_os_family }}.yml"
 
+- name: configure yum repository
+  copy: src="{{ ansible_os_family }}_{{ item }}" dest="{{ RedHat_repodest }}/{{ item }}" owner=root group=root mode=0644
+  with_items: "{{ ansible_os_family }}_repolist"
+  tags: repo
+
 - name: upgrade all packages
   action: "{{ ansible_pkg_mgr }} pkg=* state=latest"
   when: ansible_distribution != "OpenWrt"
