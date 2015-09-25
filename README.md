@@ -1,7 +1,12 @@
-Ansible workstation Role
+Ansible common role
 =====================
 
-Ansible role to install default packages on a host. Selinux is also disabled by default.
+Ansible role to:
+  - install default packages
+  - disable Selinux
+  - configure repositories ( currently only dnf//yum repos )
+
+Repos config file is embedded in the role.
 
 Requirements
 ------------
