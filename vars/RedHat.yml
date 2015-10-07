@@ -7,7 +7,7 @@ packages:
   - mosh
   - sudo
   - git
-  - python3
+  # - python3
   - htop
   - tree
   - openssh-server
@@ -17,10 +17,11 @@ packages:
   - ncurses-devel
   - ncurses
   - nmap
-  - gcc
   - vim-common
   - vim-X11
   - zsh
   - sshpass
   - curl
   - wget
+
+# fixme: python34 == python3 on centos

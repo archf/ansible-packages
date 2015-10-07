@@ -9,6 +9,7 @@
 - name: configure yum or dnf repository
   copy: src="{{ ansible_os_family }}_{{ item }}" dest="{{ RedHat_repodest }}/{{ item }}" owner=root group=root mode=0644
   with_items: "{{ ansible_os_family }}_repolist"
+  when: item is defined
   tags: repo
 
 - name: upgrade all packages

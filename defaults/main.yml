@@ -1,8 +1,8 @@
 ---
 
+# default repos to configure on target host
 RedHat_repodest: "/etc/yum.repos.d"
-RedHat_repolist:
-  - virtualbox.repo
+RedHat_repolist: []
 
 Debian_repodest: ''
 Debian_repolist: []

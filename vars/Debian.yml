@@ -18,7 +18,6 @@ packages:
   - libncurses5-dev
   - libncurses5
   - nmap
-  - gcc
   - linux-kernel-headers
   - zsh
   - sshpash
