@@ -20,6 +20,10 @@ packages:
   - nmap
   - linux-kernel-headers
   - zsh
-  - sshpash
+  - ssh-askpass
+  - sshpass
   - curl
   - wget
+
+# - libselinux-python
+# libselinux-python to manage selinux under debian family

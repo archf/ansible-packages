@@ -14,7 +14,7 @@
 
 - name: upgrade all packages
   action: "{{ ansible_pkg_mgr }} pkg=* state=latest"
-  when: ansible_distribution != "OpenWrt"
+  when: ansible_distribution != "OpenWrt" and ansible_os_family != 'Debian'
 
 - name: installing default packages
   action: "{{ ansible_pkg_mgr }} pkg={{ item }} state=latest"
@@ -28,4 +28,4 @@
 
 - name: disable selinux for now
   selinux: state=disabled
-  when: ansible_distribution != "OpenWrt"
+  when: ansible_distribution != "OpenWrt" and ansible_os_family != 'Debian'
