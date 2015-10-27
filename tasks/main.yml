@@ -26,6 +26,18 @@
   with_items: packages
   when: ansible_distribution == "OpenWrt"
 
-- name: disable selinux for now
-  selinux: state=disabled
-  when: ansible_distribution != "OpenWrt" and ansible_os_family != 'Debian'
+# - name: disable selinux for now
+#   selinux: state=disabled
+#   when: ansible_distribution != "OpenWrt" and ansible_os_family != 'Debian'
+
+- name: adding mounts to fstab
+  mount:
+    src: "{{ item.src }}"
+    name: "{{ item.name }}"
+    fstype: "{{ item.fstype }}"
+    state: "{{ item.state|default('mounted') }}"
+    opts: "{{ item.opts }}"
+    passno: "{{ item.passno|default('2') }}"
+    dump: "{{ item.dump|default('1') }}"
+  with_items: mounts
+  when: mounts is defined

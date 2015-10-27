@@ -2,9 +2,10 @@ Ansible common role
 =====================
 
 Ansible role to:
+  - configure yum or dnf repository
   - install default packages
-  - disable Selinux
   - configure repositories ( currently only dnf//yum repos )
+  - add mounts to fs
 
 Repos config file is embedded in the role.
 
