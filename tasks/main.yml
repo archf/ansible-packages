@@ -41,3 +41,11 @@
     dump: "{{ item.dump|default('1') }}"
   with_items: mounts
   when: mounts is defined
+
+- name: adjust mountpoints group ownership
+  file:
+    path: "{{ item.name }}"
+    group: "{{ item.group}}"
+    state: directory
+  with_items: mounts
+  when: mounts is defined
