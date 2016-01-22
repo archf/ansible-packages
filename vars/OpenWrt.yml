@@ -1,7 +1,7 @@
 ---
 # list of packages to install by default on any openwrt system
 
-packages:
+common_pkgs:
   - 6rd
   - zsh
   - vim
@@ -31,9 +31,6 @@ packages:
   - openssh-client-utils
   - ca-certificates
   - python-openssl
-
-  pip-packages:
-  - python-cheetah
 
 # cobbler requirements
     # createrepo

@@ -1,8 +1,10 @@
 ---
 
+common_pkg_state: latest
+
 # default repos to configure on target host
 RedHat_repodest: "/etc/yum.repos.d"
 RedHat_repolist: []
 
-Debian_repodest: ''
+Debian_repodest: '/etc/apt/sources.list.d'
 Debian_repolist: []

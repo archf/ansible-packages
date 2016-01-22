@@ -9,16 +9,15 @@
 - name: configure yum or dnf repository
   copy: src="{{ ansible_os_family }}_{{ item }}" dest="{{ RedHat_repodest }}/{{ item }}" owner=root group=root mode=0644
   with_items: "{{ ansible_os_family }}_repolist"
-  when: (ansible_os_family != 'RedHat') and (item is defined)
+  when: (ansible_os_family == 'RedHat') and (item is defined)
   tags: repo
 
 - name: upgrade all packages
-  action: "{{ ansible_pkg_mgr }} pkg=* state=latest"
+  package: name={{ common_pkgs }} state={{ common_pkg_state }}
   when: ansible_distribution != "OpenWrt" and ansible_os_family != 'Debian'
 
 - name: installing default packages
-  action: "{{ ansible_pkg_mgr }} pkg={{ item }} state=latest"
-  with_items: packages
+  package: name={{ common_pkgs }} state={{ common_pkg_state }}
   when: ansible_distribution != "OpenWrt"
 
 - name: installing default packages on an openwrt system

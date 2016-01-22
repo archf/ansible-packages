@@ -1,6 +1,6 @@
 ---
 # list of packages to install by default on any debian family system
-packages:
+common_pkgs:
   - tmux
   - urlview
   - mosh
