@@ -1,8 +1,6 @@
 ---
 # file: roles/common/tasks/main.yml
 
-# specify the packages and the packager to use
-# see the vars folder for a complete list
 - name: load OS specific variables (see ../vars/*)
   include_vars: "{{ ansible_os_family }}.yml"
 
@@ -12,9 +10,20 @@
   when: (ansible_os_family == 'RedHat') and (item is defined)
   tags: repo
 
-- name: upgrade all packages
-  package: name={{ common_pkgs }} state={{ common_pkg_state }}
-  when: ansible_distribution != "OpenWrt" and ansible_os_family != 'Debian'
+# - name: upgrade all packages
+#   package: name=* state={{ common_pkg_state }}
+#   when: ansible_distribution != "OpenWrt" and ansible_os_family != 'Debian'
+
+# fixme: adjust for rhel familiy
+- name: template grub
+  copy:
+    src: grub
+    dest: /etc/default/grub
+    owner: root
+    group: root
+    mode: 0644
+  notify: update grub
+  when:  ansible_os_family == 'Debian'
 
 - name: installing default packages
   package: name={{ common_pkgs }} state={{ common_pkg_state }}
@@ -25,9 +34,10 @@
   with_items: packages
   when: ansible_distribution == "OpenWrt"
 
-# - name: disable selinux for now
-#   selinux: state=disabled
-#   when: ansible_distribution != "OpenWrt" and ansible_os_family != 'Debian'
+  # rhel only
+- name: disable selinux on rhel
+  selinux: state={{ selinux_state }}
+  when: ansible_distribution == "RedHat"
 
 - name: adding mounts to fstab
   mount:

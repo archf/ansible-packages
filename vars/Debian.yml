@@ -24,6 +24,4 @@ common_pkgs:
   - sshpass
   - curl
   - wget
-
-# - libselinux-python
-# libselinux-python to manage selinux under debian family
+  # - ntopng

@@ -3,7 +3,7 @@ galaxy_info:
   author: Felix Archambault
   description: Ansible role to install common base packages on a host
   license: MIT
-  min_ansible_version: 1.2
+  min_ansible_version: 2.0
   platforms:
     - name: EL
       versions:
@@ -20,4 +20,9 @@ galaxy_info:
       - wheezy
   categories:
   - development
-dependencies: []
+dependencies:
+  - accounts
+  - resolv
+  - openssh-server
+  - fail2ban
+  - ntpd

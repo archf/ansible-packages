@@ -5,6 +5,8 @@ Ansible role to:
   - configure yum or dnf repository
   - install default packages
   - configure repositories ( currently only dnf//yum repos )
+  - disable selinux on rhel
+
   - add mounts to fs
 
 Repos config file is embedded in the role.

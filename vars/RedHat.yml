@@ -7,7 +7,7 @@ common_pkgs:
   - mosh
   - sudo
   - git
-  # - python3
+  - python3
   - htop
   - tree
   - openssh-server
