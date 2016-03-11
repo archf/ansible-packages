@@ -18,11 +18,11 @@ galaxy_info:
     - name: Debian
       versions:
       - wheezy
-  categories:
+  tags:
+  - system
   - development
 dependencies:
   - accounts
   - resolv
   - openssh-server
-  - fail2ban
   - ntpd

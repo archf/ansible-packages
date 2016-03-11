@@ -2,16 +2,16 @@
 # file: roles/common/tasks/main.yml
 
 - name: load OS specific variables (see ../vars/*)
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: "{{ansible_os_family}}.yml"
 
 - name: configure yum or dnf repository
-  copy: src="{{ ansible_os_family }}_{{ item }}" dest="{{ RedHat_repodest }}/{{ item }}" owner=root group=root mode=0644
-  with_items: "{{ ansible_os_family }}_repolist"
+  copy: src="{{ansible_os_family}}_{{item}}" dest="{{RedHat_repodest}}/{{item}}" owner=root group=root mode=0644
+  with_items: "{{ansible_os_family}}_repolist"
   when: (ansible_os_family == 'RedHat') and (item is defined)
   tags: repo
 
 # - name: upgrade all packages
-#   package: name=* state={{ common_pkg_state }}
+#   package: name=* state={{common_pkg_state}}
 #   when: ansible_distribution != "OpenWrt" and ansible_os_family != 'Debian'
 
 # fixme: adjust for rhel familiy
@@ -26,35 +26,35 @@
   when:  ansible_os_family == 'Debian'
 
 - name: installing default packages
-  package: name={{ common_pkgs }} state={{ common_pkg_state }}
+  package: name={{common_pkgs}} state={{common_pkg_state}}
   when: ansible_distribution != "OpenWrt"
 
 - name: installing default packages on an openwrt system
-  opkg: name={{ item }} state=present update_cache=true
-  with_items: packages
+  opkg: name={{item}} state=present update_cache=true
+  with_items: "{{packages}}"
   when: ansible_distribution == "OpenWrt"
 
   # rhel only
 - name: disable selinux on rhel
-  selinux: state={{ selinux_state }}
+  selinux: state={{selinux_state}}
   when: ansible_distribution == "RedHat"
 
 - name: adding mounts to fstab
   mount:
-    src: "{{ item.src }}"
-    name: "{{ item.name }}"
-    fstype: "{{ item.fstype }}"
-    state: "{{ item.state|default('mounted') }}"
-    opts: "{{ item.opts }}"
-    passno: "{{ item.passno|default('2') }}"
-    dump: "{{ item.dump|default('1') }}"
-  with_items: mounts
+    src: "{{item.src}}"
+    name: "{{item.name}}"
+    fstype: "{{item.fstype}}"
+    state: "{{item.state|default('mounted')}}"
+    opts: "{{item.opts}}"
+    passno: "{{item.passno|default('2')}}"
+    dump: "{{item.dump|default('1')}}"
+  with_items: "{{mounts}}"
   when: mounts is defined
 
 - name: adjust mountpoints group ownership
   file:
-    path: "{{ item.name }}"
-    group: "{{ item.group}}"
+    path: "{{item.name}}"
+    group: "{{item.group}}"
     state: directory
-  with_items: mounts
+  with_items: "{{mounts}}"
   when: mounts is defined
