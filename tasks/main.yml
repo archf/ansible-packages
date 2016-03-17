@@ -14,9 +14,12 @@
 #   when: (ansible_os_family == 'RedHat') and (item is defined)
 #   tags: repo
 
+# this task would attempt to install all available packages on ubuntu,
+# therefore to upgrade all installed packages, the apt module should be used
+# with upgrade=safe option
 - name: upgrade all packages
   package: name=* state={{common_pkg_state}}
-  when: ansible_distribution != "OpenWrt"
+  when: ansible_distribution != "OpenWrt" and ansible_os_family != "Debian"
 
 # fixme: adjust for rhel familiy
 - name: template grub
@@ -33,9 +36,9 @@
   package: name={{common_pkgs}} state={{common_pkg_state}}
   when: ansible_distribution != "OpenWrt"
 
-- name: installing default packages on an openwrt system
+- name: installing default packages on an OpenWrt system
   opkg: name={{item}} state=present update_cache=true
-  with_items: "{{packages}}"
+  with_items: "{{common_pkgs}}"
   when: ansible_distribution == "OpenWrt"
 
   # rhel only

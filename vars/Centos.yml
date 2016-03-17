@@ -1,0 +1,24 @@
+---
+# list of packages to install by default on any rhel family system
+
+common_pkgs:
+  - tmux
+  - urlview
+  - sudo
+  - git
+  - python34
+  - htop
+  - tree
+  - openssh-server
+  - gdisk
+  - rsync
+  - lvm2
+  - ncurses-devel
+  - ncurses
+  - nmap
+  - vim-common
+  - vim-X11
+  - zsh
+  - sshpass
+  - curl
+  - wget
