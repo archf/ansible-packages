@@ -20,7 +20,7 @@ galaxy_info:
       - wheezy
 
   galaxy_tags:
-  - system
-  - packages
+    - system
+    - packages
 
 dependencies:[]
