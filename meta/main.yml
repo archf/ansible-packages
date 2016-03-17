@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Felix Archambault
-  description: Ansible role to install common base packages on a host
+  description: Ansible role to install packages on a host
   license: MIT
   min_ansible_version: 2.0
   platforms:
@@ -18,11 +18,9 @@ galaxy_info:
     - name: Debian
       versions:
       - wheezy
-  tags:
+
+  galaxy_tags:
   - system
-  - development
-dependencies:
-  - accounts
-  - resolv
-  - openssh-server
-  - ntpd
+  - packages
+
+dependencies:[]

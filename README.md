@@ -1,4 +1,4 @@
-Ansible common role
+Ansible packages role
 =====================
 
 Ansible role to:
@@ -7,6 +7,7 @@ Ansible role to:
   - configure repositories ( currently only dnf//yum repos )
   - disable selinux on rhel
 
+It will also:
   - add mounts to fs
 
 Repos config file is embedded in the role.
