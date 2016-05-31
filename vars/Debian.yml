@@ -24,4 +24,5 @@ common_pkgs:
   - sshpass
   - curl
   - wget
+  - python-selinux
   # - ntopng

@@ -114,6 +114,20 @@ packages:
   - python-openssl
 ```
 
+Configure mounts
+----------------
+
+```yaml
+mounts:
+- dev: '/dev/mapper/data_vg-home_lv'
+  path: '/media/home_lv'
+  state: mounted
+  fstype: ext4
+  opts: 'defaults,acl'
+  group: users
+  passno: X # default -> 2
+  dump: Y # default -> 1
+```
 Dependencies
 ------------
 

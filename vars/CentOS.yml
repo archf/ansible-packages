@@ -4,11 +4,8 @@
 common_pkgs:
   - tmux
   - urlview
-  - mosh
   - sudo
   - git
-  - python3
-  - htop
   - tree
   - openssh-server
   - gdisk
@@ -20,7 +17,7 @@ common_pkgs:
   - vim-common
   - vim-X11
   - zsh
-  - sshpass
   - curl
   - wget
   - libselinux-python
+  - man
