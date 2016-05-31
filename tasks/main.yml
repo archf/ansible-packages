@@ -46,8 +46,8 @@
 
 - name: adding mounts to fstab
   mount:
-    src: "{{item.src}}"
-    name: "{{item.name}}"
+    src: "{{item.dev}}"
+    name: "{{item.path}}"
     fstype: "{{item.fstype}}"
     state: "{{item.state|default('mounted')}}"
     opts: "{{item.opts}}"
@@ -58,7 +58,7 @@
 
 - name: adjust mountpoints group ownership
   file:
-    path: "{{item.name}}"
+    path: "{{item.path}}"
     group: "{{item.group}}"
     state: directory
   with_items: "{{mounts}}"
