@@ -5,7 +5,7 @@ common_pkgs:
   - urlview
   - mosh
   - git
-  - vim-gtk
+  - vim-gtk3
   - vim
   - python3
   - htop
