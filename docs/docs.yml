@@ -1,0 +1,50 @@
+---
+github_account: archf
+# requirements:
+description: |
+  Ansible role to
+  - configure yum or dnf repository
+  - install default packages
+  - configure repositories ( currently only dnf//yum repos )
+  - disable selinux on rhel
+  - add mounts in the fstree
+
+  ### Add a mount to fstab
+
+  ```yaml
+  # List of mounts to add to fstab.
+  mounts:
+    - dev: '/dev/mapper/data_vg-home_lv'
+      path: '/media/home_lv'
+      state: mounted
+      fstype: ext4
+      opts: 'defaults,acl'
+      group: users
+      passno: X # defaults to 2
+      dump: Y # defaults to 1
+  ```
+
+todos:
+  - legacy package removal?
+
+role_stack: |
+  This role was carefully selected to be part an ultimate deck of roles to manage
+  your infrastructure.
+
+  All roles' documentation is wrapped in this [convenient guide](http://127.0.0.1:8000/).
+
+# cobbler requirements
+    # createrepo
+    # httpd (apache2 for Debian/Ubuntu)
+    # mkisofs
+    # mod_wsgi (libapache2-mod-wsgi for Debian/Ubuntu)
+    # mod_ssl (libapache2-mod-ssl)
+    # python-cheetah
+    # python-netaddr
+    # python-simplejson
+    # python-urlgrabber
+    # PyYAML (python-yaml for Debian/Ubuntu)
+    # rsync
+    # syslinux
+    # tftp-server (atftpd for Debian/Ubuntu, though others may work)
+    # yum-utils

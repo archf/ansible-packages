@@ -4,7 +4,7 @@ common_pkg_state: latest
 
 selinux_state: disabled
 
-# default repos to configure on target host
+# Default repos to configure on a target host.
 RedHat_repodest: "/etc/yum.repos.d"
 RedHat_repolist: []
 

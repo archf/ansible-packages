@@ -1,6 +1,6 @@
 ---
-# list of packages to install by default on any openwrt system
 
+# List of packages to install by default on any openwrt system
 common_pkgs:
   - 6rd
   - zsh

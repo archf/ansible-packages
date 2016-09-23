@@ -1,6 +1,6 @@
 ---
-# list of packages to install by default on any rhel family system
 
+# List of packages to install by default on any rhel family system.
 common_pkgs:
   - tmux
   - urlview

@@ -1,11 +1,13 @@
 ---
-# list of packages to install by default on any rhel family system
 
+# List of packages to install by default on any CentOS family system
 common_pkgs:
   - tmux
   - urlview
   - sudo
   - git
+  - python34
+  - htop
   - tree
   - openssh-server
   - gdisk
@@ -21,3 +23,4 @@ common_pkgs:
   - wget
   - libselinux-python
   - man
+  - sshpass
