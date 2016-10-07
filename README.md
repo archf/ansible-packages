@@ -49,8 +49,6 @@ common_pkgs:
   - urlview
   - sudo
   - git
-  - python34
-  - htop
   - tree
   - openssh-server
   - gdisk
@@ -66,7 +64,11 @@ common_pkgs:
   - wget
   - libselinux-python
   - man
-  - sshpass
+
+  # requires epel-release packages on CentOS
+  # - htop
+  # - python34
+  # - sshpass
 
 ```
 
