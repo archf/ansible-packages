@@ -1,4 +1,4 @@
 ---
 
 - name: update grub
-  command: upgrade-grub
+  command: update-grub
