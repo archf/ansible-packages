@@ -56,7 +56,7 @@
     opts: "{{item.opts}}"
     passno: "{{item.passno|default('2')}}"
     dump: "{{item.dump|default('1')}}"
-  with_items: "{{mounts}}"
+  with_items: "{{mounts|default(omit)}}"
   when: mounts is defined
 
 - name: adjust mountpoints group ownership
@@ -64,5 +64,5 @@
     path: "{{item.path}}"
     group: "{{item.group}}"
     state: directory
-  with_items: "{{mounts}}"
+  with_items: "{{mounts|default(omit)}}"
   when: mounts is defined
