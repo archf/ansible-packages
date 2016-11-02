@@ -21,7 +21,19 @@
   package: name=* state={{common_pkg_state}}
   when: ansible_distribution != "OpenWrt" and ansible_os_family != "Debian"
 
-# fixme: adjust for rhel familiy
+- name: installing default packages
+  package: name={{common_pkgs}} state={{common_pkg_state}}
+  when: ansible_distribution != "OpenWrt"
+
+- include: openwrt.yml
+  when: ansible_distribution == "OpenWrt"
+
+  # rhel only
+  # requires package 'libselinux-python'
+- name: disable selinux on rhel
+  selinux: state={{selinux_state}}
+  when: ansible_distribution == "RedHat"
+
 - name: template grub
   copy:
     src: grub
@@ -32,20 +44,7 @@
   notify: update grub
   when:  ansible_os_family == 'Debian'
 
-- name: installing default packages
-  package: name={{common_pkgs}} state={{common_pkg_state}}
-  when: ansible_distribution != "OpenWrt"
-
-- name: installing default packages on an OpenWrt system
-  opkg: name={{item}} state=present update_cache=true
-  with_items: "{{common_pkgs}}"
-  when: ansible_distribution == "OpenWrt"
-
-  # rhel only
-  # requires package 'libselinux-python'
-- name: disable selinux on rhel
-  selinux: state={{selinux_state}}
-  when: ansible_distribution == "RedHat"
+### mounts
 
 - name: adding mounts to fstab
   mount:
