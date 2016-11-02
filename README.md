@@ -40,6 +40,38 @@ mounts:
 Those variables from `vars/*.{yml,json}` are loaded dynamically during task
 runtime using the `include_vars` module.
 
+Variables loaded from `vars/CentOS.yml`.
+
+```yaml
+# List of packages to install by default on any CentOS family system
+common_pkgs:
+  - tmux
+  - urlview
+  - sudo
+  - git
+  - tree
+  - openssh-server
+  - gdisk
+  - rsync
+  - lvm2
+  - ncurses-devel
+  - ncurses
+  - nmap
+  - vim-common
+  - vim-X11
+  - zsh
+  - curl
+  - wget
+  - libselinux-python
+  - man
+
+  # requires epel-release packages on CentOS
+  # - htop
+  # - python34
+  # - sshpass
+
+```
+
 Variables loaded from `vars/OpenWrt.yml`.
 
 ```yaml
@@ -93,68 +125,6 @@ common_pkgs:
 
 ```
 
-Variables loaded from `vars/RedHat.yml`.
-
-```yaml
-# List of packages to install by default on any rhel family system.
-common_pkgs:
-  - tmux
-  - urlview
-  - mosh
-  - sudo
-  - git
-  - python3
-  - htop
-  - tree
-  - openssh-server
-  - gdisk
-  - rsync
-  - lvm2
-  - ncurses-devel
-  - ncurses
-  - nmap
-  - vim-common
-  - vim-X11
-  - zsh
-  - sshpass
-  - curl
-  - wget
-  - libselinux-python
-
-```
-
-Variables loaded from `vars/CentOS.yml`.
-
-```yaml
-# List of packages to install by default on any CentOS family system
-common_pkgs:
-  - tmux
-  - urlview
-  - sudo
-  - git
-  - tree
-  - openssh-server
-  - gdisk
-  - rsync
-  - lvm2
-  - ncurses-devel
-  - ncurses
-  - nmap
-  - vim-common
-  - vim-X11
-  - zsh
-  - curl
-  - wget
-  - libselinux-python
-  - man
-
-  # requires epel-release packages on CentOS
-  # - htop
-  # - python34
-  # - sshpass
-
-```
-
 Variables loaded from `vars/Debian.yml`.
 
 ```yaml
@@ -186,6 +156,36 @@ common_pkgs:
   - python-selinux
   - python3-venv
   # - ntopng
+
+```
+
+Variables loaded from `vars/RedHat.yml`.
+
+```yaml
+# List of packages to install by default on any rhel family system.
+common_pkgs:
+  - tmux
+  - urlview
+  - mosh
+  - sudo
+  - git
+  - python3
+  - htop
+  - tree
+  - openssh-server
+  - gdisk
+  - rsync
+  - lvm2
+  - ncurses-devel
+  - ncurses
+  - nmap
+  - vim-common
+  - vim-X11
+  - zsh
+  - sshpass
+  - curl
+  - wget
+  - libselinux-python
 
 ```
 
