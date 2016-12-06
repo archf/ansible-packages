@@ -2,7 +2,6 @@
 
 # List of packages to install by default on any CentOS family system
 common_pkgs:
-  - tmux
   - urlview
   - sudo
   - git
@@ -21,6 +20,8 @@ common_pkgs:
   - wget
   - libselinux-python
   - man
+  - epel-release
+  # - tmux
 
   # requires epel-release packages on CentOS
   # - htop

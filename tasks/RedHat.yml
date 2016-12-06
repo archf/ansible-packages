@@ -1,0 +1,27 @@
+---
+
+#  When repos' fqdn are returning AAAA records and there are no IPV6
+#  connectivity, pycurl doesn't fallback on ipv4. Not tested when IPV6INIT=no.
+#  This task is also in the the 'archf.accounts' role as a few packages
+#  explicitly redquired for that roles installed only for the role a there as
+#  well.
+- name: force yum on RedHat <7 and derivatives to use ipv4
+  lineinfile:
+    line: "ip_resolve=4"
+    insertafter: "^gpgcheck*"
+    dest: /etc/yum.conf
+    state: present
+  when: ansible_distribution_major_version|int < 7
+
+# requires package 'libselinux-python'
+# errors are ignored in case selinux is just not installed
+# a better way would be to check for the presence of /etc/selinux/config
+- name: ensure selinux is '{{selinux_state}}' on RedHat derivatives
+  selinux: state={{selinux_state}}
+  ignore_errors: true
+
+# - name: configure yum or dnf repository
+#   copy: src="{{ansible_os_family}}_{{item}}" dest="{{RedHat_repodest}}/{{item}}" owner=root group=root mode=0644
+#   with_items: "{{ansible_os_family ~ "_repolist"}}"
+#   when: (ansible_os_family == 'RedHat') and (item is defined)
+#   tags: repo

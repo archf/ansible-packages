@@ -7,17 +7,27 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-      - 7
+        - 6
+        - 7
     - name: Fedora
       versions:
-      - 21
-      - 22
+        - 20
+        - 21
+        - 22
+        - 23
+        - 24
     - name: Ubuntu
       versions:
-      - trusty
+        - trusty
+        - utopic
+        - vivid
+        - wily
+        - xenial
+        - yakketytrusty
     - name: Debian
       versions:
-      - wheezy
+        - stretch
+        - wheezy
 
   galaxy_tags:
     - system

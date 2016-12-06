@@ -8,15 +8,15 @@
   include_vars: "{{ansible_distribution}}.yml"
   when: ansible_distribution == "CentOS"
 
-# - name: configure yum or dnf repository
-#   copy: src="{{ansible_os_family}}_{{item}}" dest="{{RedHat_repodest}}/{{item}}" owner=root group=root mode=0644
-#   with_items: "{{ansible_os_family ~ "_repolist"}}"
-#   when: (ansible_os_family == 'RedHat') and (item is defined)
-#   tags: repo
+- include: RedHat.yml
+  when: ansible_os_family == "RedHat"
 
-# this task would attempt to install all available packages on ubuntu,
-# therefore to upgrade all installed packages, the apt module should be used
-# with upgrade=safe option
+- include: openwrt.yml
+  when: ansible_distribution == "OpenWrt"
+
+  # this task would attempt to install all available packages on ubuntu,
+  # therefore to upgrade all installed packages, the apt module should be used
+  # with upgrade=safe option
 - name: upgrade all packages
   package: name=* state={{common_pkg_state}}
   when: ansible_distribution != "OpenWrt" and ansible_os_family != "Debian"
@@ -25,14 +25,20 @@
   package: name={{common_pkgs}} state={{common_pkg_state}}
   when: ansible_distribution != "OpenWrt"
 
-- include: openwrt.yml
-  when: ansible_distribution == "OpenWrt"
-
-  # rhel only
-  # requires package 'libselinux-python'
-- name: disable selinux on rhel
-  selinux: state={{selinux_state}}
-  when: ansible_distribution == "RedHat"
+  # this task must be after the package installation because it with fail it
+  # the sudo package isn't priorly installed.
+- name: ensure there is no requiretty or always_set_home in sudoers
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: "{{item['regexp']}}"
+    line: "{{item['line']}}"
+    validate: 'visudo -cf %s'
+    backrefs: yes
+    state: present
+  with_items:
+    - { regexp: '^Defaults.*requiretty', line: 'Defaults    !requiretty' }
+    - { regexp: '^Default.*always_set_home', line: '# Defaults  set_home' }
+    - { regexp: '^Defaults.*secure_path = /sbin:/bin:/usr/sbin:/usr/bin', line: 'Defaults   secure_path = /usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin' }
 
 - name: template grub
   copy:
