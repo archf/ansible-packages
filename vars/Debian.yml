@@ -27,4 +27,13 @@ common_pkgs:
   - wget
   - python-selinux
   - python3-venv
+  - tcpdump
+  - iotop
+  - iftop
+  - strace
+  - mlocate
+  - unzip
+  # versatile replacement for vmstat, iostat and ifstat
+  - dstat
+  # - sysstat
   # - ntopng

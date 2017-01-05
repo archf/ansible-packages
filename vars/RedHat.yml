@@ -21,6 +21,15 @@ common_pkgs:
   - wget
   - libselinux-python
   - man
+  - tcpdump
+  - iotop
+  - iftop
+  - strace
+  - mlocate
+  - unzip
+  # versatile replacement for vmstat, iostat and ifstat
+  - dstat
+  # - sysstat
   # - tmux
   # - htop
   # - python3

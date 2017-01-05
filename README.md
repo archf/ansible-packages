@@ -40,13 +40,13 @@ mounts:
 Those variables from `vars/*.{yml,json}` are loaded dynamically during task
 runtime using the `include_vars` module.
 
-Variables loaded from `vars/CentOS.yml`.
+Variables loaded from `vars/RedHat.yml`.
 
 ```yaml
-# List of packages to install by default on any CentOS family system
+# List of packages to install by default on any rhel family system.
 common_pkgs:
-  - tmux
   - urlview
+  - mosh
   - sudo
   - git
   - tree
@@ -64,11 +64,105 @@ common_pkgs:
   - wget
   - libselinux-python
   - man
+  - tcpdump
+  - iotop
+  - iftop
+  - strace
+  - mlocate
+  - unzip
+  # versatile replacement for vmstat, iostat and ifstat
+  - dstat
+  # - sysstat
+  # - tmux
+  # - htop
+  # - python3
+  # - sshpass
+
+```
+
+Variables loaded from `vars/CentOS.yml`.
+
+```yaml
+# List of packages to install by default on any CentOS family system
+common_pkgs:
+  - urlview
+  - sudo
+  - git
+  - tree
+  - openssh-server
+  - gdisk
+  - rsync
+  - lvm2
+  - ncurses-devel
+  - ncurses
+  - nmap
+  - vim-common
+  - vim-X11
+  - vim-enhanced
+  - zsh
+  - curl
+  - wget
+  - libselinux-python
+  - man
+  - epel-release
+  - tcpdump
+  - iotop
+  - iftop
+  - strace
+  - mlocate
+  - unzip
+  # versatile replacement for vmstat, iostat and ifstat
+  - dstat
+  # - sysstat
+  # - tmux
 
   # requires epel-release packages on CentOS
   # - htop
   # - python34
   # - sshpass
+
+```
+
+Variables loaded from `vars/Debian.yml`.
+
+```yaml
+# List of packages to install by default on any debian family system.
+common_pkgs:
+  - tmux
+  - urlview
+  - mosh
+  - git
+  - vim-gtk3
+  - vim
+  - python3
+  - htop
+  - fakeroot
+  - tree
+  - openssh-server
+  - gdisk
+  - rsync
+  - lvm2
+  - libncurses5-dev
+  - libncurses5
+  - nmap
+  - linux-kernel-headers
+  - zsh
+  - ssh-askpass
+  - sshpass
+  - curl
+  - wget
+  - python-selinux
+  - python3-venv
+  - tcpdump
+  - iotop
+  - iftop
+  - strace
+  - mlocate
+  - unzip
+  # versatile replacement for vmstat, iostat and ifstat
+  - dstat
+  # - sysstat
+  # - ntopng
 
 ```
 
@@ -122,70 +216,6 @@ common_pkgs:
     # syslinux
     # tftp-server (atftpd for Debian/Ubuntu, though others may work)
     # yum-utils
-
-```
-
-Variables loaded from `vars/Debian.yml`.
-
-```yaml
-# List of packages to install by default on any debian family system.
-common_pkgs:
-  - tmux
-  - urlview
-  - mosh
-  - git
-  - vim-gtk3
-  - vim
-  - python3
-  - htop
-  - fakeroot
-  - tree
-  - openssh-server
-  - gdisk
-  - rsync
-  - lvm2
-  - libncurses5-dev
-  - libncurses5
-  - nmap
-  - linux-kernel-headers
-  - zsh
-  - ssh-askpass
-  - sshpass
-  - curl
-  - wget
-  - python-selinux
-  - python3-venv
-  # - ntopng
-
-```
-
-Variables loaded from `vars/RedHat.yml`.
-
-```yaml
-# List of packages to install by default on any rhel family system.
-common_pkgs:
-  - tmux
-  - urlview
-  - mosh
-  - sudo
-  - git
-  - python3
-  - htop
-  - tree
-  - openssh-server
-  - gdisk
-  - rsync
-  - lvm2
-  - ncurses-devel
-  - ncurses
-  - nmap
-  - vim-common
-  - vim-X11
-  - zsh
-  - sshpass
-  - curl
-  - wget
-  - libselinux-python
 
 ```
 
