@@ -1,12 +1,17 @@
 ---
 
-common_pkg_state: latest
+# Packages installation behavior.
+packages_state: latest
 
-selinux_state: disabled
+# Selinux state.
+packages_selinux_state: disabled
 
-# Default repos to configure on a target host.
-RedHat_repodest: "/etc/yum.repos.d"
-RedHat_repolist: []
+# List of grub boot options assigned to GRUB_CMDLINE_LINUX_DEFAULT.
+# Many distribution defaults to GRUB_CMDLINE_LINUX_DEFAULT="quiet splash".
+packages_grub_cmdline_linux_default:
+  - quiet
+  - splash
 
-Debian_repodest: '/etc/apt/sources.list.d'
-Debian_repolist: []
+# List of boot option a assigned both to normal and recovery entry of each
+# kernel.
+packages_grub_cmdline_linux: []

@@ -21,7 +21,6 @@ common_pkgs:
   - wget
   - libselinux-python
   - man
-  - epel-release
   - tcpdump
   - iotop
   - iftop
@@ -30,6 +29,7 @@ common_pkgs:
   - unzip
   # versatile replacement for vmstat, iostat and ifstat
   - dstat
+  - yum-utils
   # - sysstat
   # - tmux
 

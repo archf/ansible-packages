@@ -1,10 +1,10 @@
 ---
 
-- name: load OS specific variables (see ../vars/*)
+- name: load OS specific variables
   include_vars: "{{ansible_os_family}}.yml"
   when: ansible_distribution != "CentOS"
 
-- name: load Centos specific variables (see ../vars/*)
+- name: load Centos specific variables
   include_vars: "{{ansible_distribution}}.yml"
   when: ansible_distribution == "CentOS"
 
@@ -18,11 +18,11 @@
   # therefore to upgrade all installed packages, the apt module should be used
   # with upgrade=safe option
 - name: upgrade all packages
-  package: name=* state={{common_pkg_state}}
+  package: name=* state={{packages_state}}
   when: ansible_distribution != "OpenWrt" and ansible_os_family != "Debian"
 
 - name: installing default packages
-  package: name={{common_pkgs}} state={{common_pkg_state}}
+  package: name={{common_pkgs}} state={{packages_state}}
   when: ansible_distribution != "OpenWrt"
 
   # this task must be after the package installation because it with fail it
@@ -40,9 +40,14 @@
     - { regexp: '^Default.*always_set_home', line: '# Defaults  set_home' }
     - { regexp: '^Defaults.*secure_path = /sbin:/bin:/usr/sbin:/usr/bin', line: 'Defaults   secure_path = /usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin' }
 
+- name: add grub boot options (quirks for some hardware)
+  set_fact:
+    packages_grub_cmdline_linux: "{{packages_grub_cmdline_linux + ['nox2apic']}}"
+  when: ansible_product_version == "ThinkPad W530"
+
 - name: template grub
-  copy:
-    src: grub
+  template:
+    src: grub.j2
     dest: /etc/default/grub
     owner: root
     group: root

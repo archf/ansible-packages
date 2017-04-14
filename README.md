@@ -13,7 +13,7 @@ Minimum required ansible version is 2.0.
 Ansible role to
 - configure yum or dnf repository
 - install default packages
-- configure repositories ( currently only dnf//yum repos )
+- configure repositories (currently only yum repos)
 - disable selinux on rhel
 - add mounts in the fstree
 
@@ -31,6 +31,32 @@ mounts:
     passno: X # defaults to 2
     dump: Y # defaults to 1
 ```
+
+### Configure Repos
+
+# This structure allows you to group repos on a per file basis.
+packages_repos:
+- file: base
+  repos:
+    - name: base
+      baseurl: "http://<your host>/centos/$releasever/os/$basearch"
+
+    - name: updates
+      baseurl: "http://<your host>/centos/$releasever/updates/$basearch"
+
+    - name: extras
+      baseurl: "http://<your host>/centos/$releasever/extras/$basearch"
+
+    # - name: contrib
+    #   baseurl: "http://<your host>/centos/$releasever/contrib/$basearch"
+
+    # - name: centosplus
+    #   baseurl: "http://<your host>/centos/$releasever/centosplus/$basearch"
+
+- file: epel
+  repos:
+    - name: epel
+      baseurl: "http://<your host>/epel/$releasever/$basearch"
 
 
 ## Role Variables
@@ -72,11 +98,11 @@ common_pkgs:
   - unzip
   # versatile replacement for vmstat, iostat and ifstat
   - dstat
+  - yum-utils
   # - sysstat
   # - tmux
   # - htop
   # - python3
-  # - sshpass
 
 ```
 
@@ -104,7 +130,6 @@ common_pkgs:
   - wget
   - libselinux-python
   - man
-  - epel-release
   - tcpdump
   - iotop
   - iftop
@@ -113,6 +138,7 @@ common_pkgs:
   - unzip
   # versatile replacement for vmstat, iostat and ifstat
   - dstat
+  - yum-utils
   # - sysstat
   # - tmux
 
@@ -134,7 +160,6 @@ common_pkgs:
   - git
   - vim-gtk3
   - vim
-  - python3
   - htop
   - fakeroot
   - tree
@@ -152,6 +177,7 @@ common_pkgs:
   - curl
   - wget
   - python-selinux
+  - python3
   - python3-venv
   - tcpdump
   - iotop
@@ -224,16 +250,21 @@ common_pkgs:
 Defaults from `defaults/main.yml`.
 
 ```yaml
-common_pkg_state: latest
+# Packages installation behavior.
+packages_state: latest
 
-selinux_state: disabled
+# Selinux state.
+packages_selinux_state: disabled
 
-# Default repos to configure on a target host.
-RedHat_repodest: "/etc/yum.repos.d"
-RedHat_repolist: []
+# List of grub boot options assigned to GRUB_CMDLINE_LINUX_DEFAULT.
+# Many distribution defaults to GRUB_CMDLINE_LINUX_DEFAULT="quiet splash".
+packages_grub_cmdline_linux_default:
+  - quiet
+  - splash
 
-Debian_repodest: '/etc/apt/sources.list.d'
-Debian_repolist: []
+# List of boot option a assigned both to normal and recovery entry of each
+# kernel.
+packages_grub_cmdline_linux: []
 
 ```
 
@@ -282,10 +313,6 @@ Basic usage is:
 ## Ansible role dependencies
 
 None.
-
-## Todo
-
-  * legacy package removal?
 
 ## License
 

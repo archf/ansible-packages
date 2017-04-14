@@ -5,7 +5,7 @@ description: |
   Ansible role to
   - configure yum or dnf repository
   - install default packages
-  - configure repositories ( currently only dnf//yum repos )
+  - configure repositories (currently only yum repos)
   - disable selinux on rhel
   - add mounts in the fstree
 
@@ -24,8 +24,33 @@ description: |
       dump: Y # defaults to 1
   ```
 
-todos:
-  - legacy package removal?
+  ### Configure Repos
+
+  # This structure allows you to group repos on a per file basis.
+  packages_repos:
+  - file: base
+    repos:
+      - name: base
+        baseurl: "http://<your host>/centos/$releasever/os/$basearch"
+
+      - name: updates
+        baseurl: "http://<your host>/centos/$releasever/updates/$basearch"
+
+      - name: extras
+        baseurl: "http://<your host>/centos/$releasever/extras/$basearch"
+
+      # - name: contrib
+      #   baseurl: "http://<your host>/centos/$releasever/contrib/$basearch"
+
+      # - name: centosplus
+      #   baseurl: "http://<your host>/centos/$releasever/centosplus/$basearch"
+
+  - file: epel
+    repos:
+      - name: epel
+        baseurl: "http://<your host>/epel/$releasever/$basearch"
+
+# todos:
 
 role_stack: |
   This role was carefully selected to be part an ultimate deck of roles to manage

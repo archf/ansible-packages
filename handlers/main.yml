@@ -2,3 +2,4 @@
 
 - name: update grub
   command: update-grub
+  check_mode: yes
