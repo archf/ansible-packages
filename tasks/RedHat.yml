@@ -1,8 +1,9 @@
 ---
 
 # requires package 'libselinux-python'
-# errors are ignored in case selinux is just not installed
+# errors are ignored in case selinux is just not installed.
 # a better way would be to check for the presence of /etc/selinux/config
+# NOTE: disabling selinux requires a reboot.
 - name: ensure selinux is '{{selinux_state}}' on RedHat derivatives
   selinux: state={{packages_selinux_state}}
   ignore_errors: true
@@ -38,9 +39,10 @@
 # - debug: msg={{installed_repofiles['files']|map(attribute='path')|list}}
 
 - name: backup unrequired repo files
-# - debug: msg={{item}}
-  # command: mv {{item}} /etc/yum.repos.d.backup/
-  command: rm {{item}}
+  copy:
+    src: "{{item}}"
+    dest: "/etc/yum.repos.d.backup/"
+    remote_src: yes
   with_items: "{{installed_repofiles['files']|map(attribute='path')|list}}"
   when: packages_repos is defined and item|basename not in packages_repos|map(attribute='file')
   tags: repos

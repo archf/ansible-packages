@@ -40,6 +40,8 @@
     - { regexp: '^Default.*always_set_home', line: '# Defaults  set_home' }
     - { regexp: '^Defaults.*secure_path = /sbin:/bin:/usr/sbin:/usr/bin', line: 'Defaults   secure_path = /usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin' }
 
+### Grub
+
 - name: add grub boot options (quirks for some hardware)
   set_fact:
     packages_grub_cmdline_linux: "{{packages_grub_cmdline_linux + ['nox2apic']}}"
@@ -54,6 +56,9 @@
     mode: 0644
   notify: update grub
   when:  ansible_os_family == 'Debian'
+
+### OS limits and kernel tweaks
+- include: kernel.yml
 
 ### mounts
 
