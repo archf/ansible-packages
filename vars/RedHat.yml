@@ -30,6 +30,7 @@ common_pkgs:
   # versatile replacement for vmstat, iostat and ifstat
   - dstat
   - yum-utils
+  - xorg-x11-xauth
   # - sysstat
   # - tmux
   # - htop
