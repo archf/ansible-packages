@@ -19,7 +19,10 @@
   # with upgrade=safe option
 - name: upgrade all packages
   package: name=* state={{packages_state}}
-  when: ansible_distribution != "OpenWrt" and ansible_os_family != "Debian"
+  when:
+    - packages_state == "latest"
+    - ansible_distribution != "OpenWrt"
+    - ansible_os_family != "Debian"
 
 - name: installing default packages
   package: name={{common_pkgs}} state={{packages_state}}
