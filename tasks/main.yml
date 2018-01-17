@@ -46,21 +46,21 @@
 
 ### Grub
 
-- name: add grub boot options (quirks for some hardware)
-  set_fact:
-    packages_grub_cmdline_linux: "{{packages_grub_cmdline_linux + ['nox2apic']}}"
-  when: ansible_product_version == "ThinkPad W530"
+# - name: add grub boot options (quirks for some hardware)
+#   set_fact:
+#     packages_grub_cmdline_linux: "{{packages_grub_cmdline_linux + ['nox2apic']}}"
+#   when: ansible_product_version == "ThinkPad W530"
 
-- name: template grub
-  template:
-    src: grub.j2
-    dest: /etc/default/grub
-    owner: root
-    group: root
-    mode: 0644
-    backup: yes
-  notify: update grub
-  when:  ansible_os_family == 'Debian'
+# - name: template grub
+#   template:
+#     src: grub.j2
+#     dest: /etc/default/grub
+#     owner: root
+#     group: root
+#     mode: 0644
+#     backup: yes
+#   notify: update grub
+#   when:  ansible_os_family == 'Debian'
 
 ### OS limits and kernel tweaks
 - include: kernel.yml
