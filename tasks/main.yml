@@ -26,6 +26,7 @@
 
 - name: installing default packages
   package: name={{common_pkgs}} state={{packages_state}}
+  # ignore_errors: "{{True if packages_state == 'installed' else False}}"
   when: ansible_distribution != "OpenWrt"
 
   # this task must be after the package installation because it with fail it
@@ -57,6 +58,7 @@
     owner: root
     group: root
     mode: 0644
+    backup: yes
   notify: update grub
   when:  ansible_os_family == 'Debian'
 

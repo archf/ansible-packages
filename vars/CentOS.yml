@@ -13,8 +13,6 @@ common_pkgs:
   - ncurses-devel
   - ncurses
   - nmap
-  - vim-common
-  - vim-X11
   - vim-enhanced
   - zsh
   - curl

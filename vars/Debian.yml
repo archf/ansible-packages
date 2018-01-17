@@ -2,6 +2,7 @@
 
 # List of packages to install by default on any debian family system.
 common_pkgs:
+  - aptitude
   - tmux
   - urlview
   - mosh
@@ -20,7 +21,7 @@ common_pkgs:
   - nmap
   - linux-kernel-headers
   - zsh
-  - ssh-askpass
+  # - ssh-askpass
   - sshpass
   - curl
   - wget
