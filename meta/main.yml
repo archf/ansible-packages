@@ -3,7 +3,7 @@ galaxy_info:
   author: Felix Archambault
   description: Ansible role to install packages on a host
   license: MIT
-  min_ansible_version: 2.0
+  min_ansible_version: 2.5
   platforms:
     - name: EL
       versions:
@@ -16,6 +16,8 @@ galaxy_info:
         - 22
         - 23
         - 24
+        - 25
+        - 26
     - name: Ubuntu
       versions:
         - trusty
@@ -23,7 +25,8 @@ galaxy_info:
         - vivid
         - wily
         - xenial
-        - yakketytrusty
+        - artful
+        - bionic
     - name: Debian
       versions:
         - stretch

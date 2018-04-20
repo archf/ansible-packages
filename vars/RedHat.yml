@@ -6,6 +6,7 @@ common_pkgs:
   - mosh
   - sudo
   - git
+  - make
   - tree
   - openssh-server
   - gdisk

@@ -4,6 +4,7 @@
 common_pkgs:
   - urlview
   - sudo
+  - make
   - git
   - tree
   - openssh-server
