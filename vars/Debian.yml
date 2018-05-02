@@ -11,7 +11,6 @@ common_pkgs:
   - vim-gtk3
   - vim
   - htop
-  - fakeroot
   - tree
   - openssh-server
   - gdisk
@@ -30,6 +29,7 @@ common_pkgs:
   - python3
   - python3-venv
   - linux-tools
+  - ethtool
   - tcpdump
   - iotop
   - iftop
