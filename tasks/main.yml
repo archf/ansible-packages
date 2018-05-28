@@ -24,6 +24,19 @@
     - ansible_facts['distribution'] != "OpenWrt"
     - ansible_facts['os_family'] != "Debian"
 
+- name: update apt cache on Debian hosts
+  apt:
+    update_cache: True
+  when:
+    - ansible_facts['os_family'] == "Debian"
+
+- name: upgrade all packages on Debian hosts
+  apt:
+    only_upgrade: True
+  when:
+    - packages_state == "latest"
+    - ansible_facts['os_family'] == "Debian"
+
 - name: installing default packages
   package: name={{common_pkgs}} state={{packages_state}}
   # ignore_errors: "{{True if packages_state == 'installed' else False}}"
