@@ -8,6 +8,7 @@ common_pkgs:
   - tmux
   - mosh
   - git
+  - silversearcher-ag
   - make
   - vim-gtk3
   - vim
