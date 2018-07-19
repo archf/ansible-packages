@@ -18,6 +18,7 @@ common_pkgs:
   - zsh
   - curl
   - wget
+  - fping
   - libselinux-python
   - man
   - tcpdump
