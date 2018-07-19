@@ -24,6 +24,7 @@ common_pkgs:
   - zsh
   # - ssh-askpass
   - sshpass
+  - fping
   - curl
   - wget
   - python-selinux
