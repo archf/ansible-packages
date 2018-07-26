@@ -30,6 +30,7 @@ common_pkgs:
   - wget
   - python-selinux
   - python3
+  - python3-pip
   - python3-venv
   # provides: perf, cpupower, usbip, turbostatat, x86_energy_perf_policy,
   # acpidbg
