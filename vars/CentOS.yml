@@ -10,7 +10,6 @@ common_pkgs:
   - openssh-server
   - gdisk
   - rsync
-  - lvm2
   - ncurses-devel
   - ncurses
   - nmap
@@ -22,11 +21,15 @@ common_pkgs:
   - libselinux-python
   - man
   - tcpdump
+  - htop
   - iotop
   - iftop
   - strace
   - mlocate
   - unzip
+  - pv
+  - ethtool
+  - xorg-x11-xauth
   # versatile replacement for vmstat, iostat and ifstat
   - dstat
   - yum-utils

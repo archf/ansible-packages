@@ -17,7 +17,6 @@ common_pkgs:
   - openssh-server
   - gdisk
   - rsync
-  - lvm2
   - libncurses5-dev
   - libncurses5
   - nmap
