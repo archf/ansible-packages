@@ -22,7 +22,7 @@ common_pkgs:
   - nmap
   - linux-kernel-headers
   - zsh
-  # - ssh-askpass
+  - tcptraceroute
   - sshpass
   - fping
   - curl
