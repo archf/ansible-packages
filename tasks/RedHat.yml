@@ -36,6 +36,7 @@
     state: directory
   tags: repos
 
+# todo: install epel if missing
 # - debug: msg={{installed_repofiles['files']|map(attribute='path')|list}}
 
 - name: configuring yum repositories
@@ -117,9 +118,11 @@
     # loop: lookup('subelements', {{packages_repos|default(omit)|selectattr('repos', 'defined')|list}}, repos)
     loop: lookup('subelements', {{packages_repos|selectattr('repos', 'defined')|list}}, repos)
     when:
-      - packages_repos is defined
       - item|basename not in packages_repos|map(attribute='file')
-    tags: repos
+
+  when:
+  - packages_repos is defined
+  tags: repos
 
 # - name: Update package management cache (YUM)
 #   command: yum clean all
