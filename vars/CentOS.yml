@@ -2,11 +2,11 @@
 
 # List of packages to install by default on any CentOS family system
 common_pkgs:
-  - urlview
   - sudo
   - make
   - git
   - tree
+  - the_silver_searcher
   - openssh-server
   - gdisk
   - rsync
@@ -33,6 +33,7 @@ common_pkgs:
   # versatile replacement for vmstat, iostat and ifstat
   - dstat
   - yum-utils
+  - deltarpm
   # - sysstat
   # - tmux
 

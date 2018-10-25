@@ -116,7 +116,7 @@
       # unsafe_writes: "{{item[1]['unsafe_writes']|default(omit)}}"
       # username: "{{item[1]['username']|default(omit)}}"
     # loop: lookup('subelements', {{packages_repos|default(omit)|selectattr('repos', 'defined')|list}}, repos)
-    loop: lookup('subelements', {{packages_repos|selectattr('repos', 'defined')|list}}, repos)
+    loop: "{{lookup('subelements', packages_repos|selectattr('repos', 'defined')|list, repos)}}"
     when:
       - item|basename not in packages_repos|map(attribute='file')
 
