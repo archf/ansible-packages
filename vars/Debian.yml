@@ -6,6 +6,7 @@ common_pkgs:
   - language-pack-en
   - aptitude
   - tmux
+  - urlview
   - mosh
   - git
   - silversearcher-ag

@@ -30,6 +30,7 @@ common_pkgs:
   - pv
   - ethtool
   - xorg-x11-xauth
+  - urlview
   # versatile replacement for vmstat, iostat and ifstat
   - dstat
   - yum-utils
