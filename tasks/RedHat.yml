@@ -4,7 +4,7 @@
 # errors are ignored in case selinux is just not installed.
 # a better way would be to check for the presence of /etc/selinux/config
 # NOTE: disabling selinux requires a reboot.
-- name: ensure selinux is '{{selinux_state}}' on RedHat derivatives
+- name: ensure selinux is '{{packages_selinux_state}}' on RedHat derivatives
   selinux: state={{packages_selinux_state}}
   ignore_errors: true
   tags: selinux
