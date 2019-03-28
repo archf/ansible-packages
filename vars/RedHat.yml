@@ -31,6 +31,7 @@ common_pkgs:
   - dstat
   - yum-utils
   - xorg-x11-xauth
+  - traceroute
   # - sysstat
   # - tmux
   # - htop
