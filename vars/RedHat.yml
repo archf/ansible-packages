@@ -3,7 +3,6 @@
 # List of packages to install by default on any rhel family system.
 common_pkgs:
   - urlview
-  - mosh
   - sudo
   - git
   - make
@@ -23,7 +22,6 @@ common_pkgs:
   - man
   - tcpdump
   - iotop
-  - iftop
   - strace
   - mlocate
   - unzip
@@ -36,3 +34,6 @@ common_pkgs:
   # - tmux
   # - htop
   # - python3
+  # part of epel
+  # - mosh
+  # - iftop
