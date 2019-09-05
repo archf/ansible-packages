@@ -1,12 +1,7 @@
 ---
 
 - name: load OS specific variables
-  include_vars: "{{ansible_facts['os_family']}}.yml"
-  when: ansible_facts['distribution'] != "CentOS"
-
-- name: load Centos specific variables
   include_vars: "{{ansible_facts['distribution']}}.yml"
-  when: ansible_facts['distribution'] == "CentOS"
 
 - include_tasks: RedHat.yml
   when: ansible_facts['os_family'] == "RedHat"
@@ -42,8 +37,8 @@
   # ignore_errors: "{{True if packages_state == 'installed' else False}}"
   when: ansible_facts['distribution'] != "OpenWrt"
 
-  # this task must be after the package installation because it with fail it
-  # the sudo package isn't priorly installed.
+  # This task is required *after* the package installation because it will fail
+  # if the sudo package wasn't installed already.
 - name: ensure there is no requiretty or always_set_home in sudoers
   lineinfile:
     dest: /etc/sudoers

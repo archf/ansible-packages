@@ -23,26 +23,27 @@
   when: ansible_facts['distribution_major_version']|int < 7
   tags: repos
 
-- name: register configured repositories
-  find:
-    paths: "/etc/yum.repos.d/"
-    patterns: "*.repo"
-  register: installed_repofiles
-  tags: repos
+block:
 
-- name: create repos backup directory
-  file:
-    path: /etc/yum.repos.d.backup
-    state: directory
-  tags: repos
+  - debug: var=packages_repos
+    delegate_to: localhost
+    run_once: true
+    when: debug
 
-# todo: install epel if missing
-# - debug: msg={{installed_repofiles['files']|map(attribute='path')|list}}
+  - name: register configured repositories
+    find:
+      paths: "/etc/yum.repos.d/"
+      patterns: "*.repo"
+    register: installed_repofiles
+    tags: repos
 
-- name: configuring yum repositories
-  block:
+  - name: create repos '/etc/yum.repos.d.backup' backup directory
+    file:
+      path: /etc/yum.repos.d.backup
+      state: directory
+    tags: repos
 
-  - name: backup unrequired repo files
+  - name: backup unrequired repo files to '/etc/yum.repos.d.backup' directory
     copy:
       src: "{{item}}"
       dest: "/etc/yum.repos.d.backup/"
@@ -121,8 +122,12 @@
       - item|basename not in packages_repos|map(attribute='file')
 
   when:
-  - packages_repos is defined
+    - packages_repos is defined
+    - packages_repos|length > 0
   tags: repos
+
+# TODO: install epel if missing
+# - debug: msg={{installed_repofiles['files']|map(attribute='path')|list}}
 
 # - name: Update package management cache (YUM)
 #   command: yum clean all
