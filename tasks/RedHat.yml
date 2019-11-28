@@ -23,7 +23,7 @@
   when: ansible_facts['distribution_major_version']|int < 7
   tags: repos
 
-block:
+- block:
 
   - debug: var=packages_repos
     delegate_to: localhost
