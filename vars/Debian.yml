@@ -50,5 +50,8 @@ common_pkgs:
   - pv
   - progress
   - xauth
+  # new in ubuntu 20.04+
+  - fd
+  - rg
   # - sysstat
   # - ntopng

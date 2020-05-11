@@ -3,8 +3,8 @@
 - name: load OS specific variables
   include_vars: "{{ansible_facts['distribution']}}.yml"
 
-- include_tasks: RedHat.yml
-  when: ansible_facts['os_family'] == "RedHat"
+# - include_tasks: RedHat.yml
+#   when: ansible_facts['os_family'] == "RedHat"
 
 - include_tasks: openwrt.yml
   when: ansible_facts['distribution'] == "OpenWrt"
@@ -77,20 +77,20 @@
 
 - name: adding mounts to fstab
   mount:
-    src: "{{item.dev}}"
-    name: "{{item.path}}"
-    fstype: "{{item.fstype}}"
-    state: "{{item.state|default('mounted')}}"
-    opts: "{{item.opts}}"
-    passno: "{{item.passno|default('2')}}"
-    dump: "{{item.dump|default('1')}}"
+    src: "{{item['dev']}}"
+    name: "{{item['path']}}"
+    fstype: "{{item['fstype']}}"
+    state: "{{item['state']|default('mounted')}}"
+    opts: "{{item['opts']}}"
+    passno: "{{item['passno']|default('2')}}"
+    dump: "{{item['dump']|default('1')}}"
   loop: "{{mounts}}"
   when: mounts is defined
 
 - name: adjust mountpoints group ownership
   file:
-    path: "{{item.path}}"
-    group: "{{item.group}}"
+    path: "{{item['path']}}"
+    group: "{{item['group']}}"
     state: directory
   loop: "{{mounts}}"
   when: mounts is defined

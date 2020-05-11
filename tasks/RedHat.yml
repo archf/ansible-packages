@@ -128,6 +128,3 @@
 
 # TODO: install epel if missing
 # - debug: msg={{installed_repofiles['files']|map(attribute='path')|list}}
-
-# - name: Update package management cache (YUM)
-#   command: yum clean all
