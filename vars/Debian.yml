@@ -50,6 +50,7 @@ common_pkgs:
   - pv
   - progress
   - xauth
+  - neovim
   # new in ubuntu 20.04+
   - fd
   - rg
