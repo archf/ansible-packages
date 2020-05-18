@@ -1,7 +1,8 @@
 ---
 
 - name: load OS specific variables
-  include_vars: "{{ansible_facts['distribution']}}.yml"
+  include_vars: "{{ansible_facts['os_family']}}.yml"
+  # include_vars: "{{ansible_facts['distribution']}}.yml"
 
 # - include_tasks: RedHat.yml
 #   when: ansible_facts['os_family'] == "RedHat"
